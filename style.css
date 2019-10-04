@@ -1,0 +1,25 @@
+li{
+    padding-left: 10px;
+    font-size: 20px;
+}
+nav{
+    height: 75px;
+}
+#dtu{
+    margin-top: 10px; 
+    color: cyan;  
+}
+.carousel-inner{
+    height: 950px;
+}
+
+.carousel-inner img{
+    height: 950px;
+}
+/* 
+.fas fa-utensils{
+    height:50px;
+    size: 100px;
+    font-size: 40px;
+} */
+
