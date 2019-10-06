@@ -2,20 +2,42 @@ li{
     padding-left: 10px;
     font-size: 20px;
 }
+
 nav{
-    height: 75px;
+    height: 120px;
 }
+
 #dtu{
     margin-top: 10px; 
     color: cyan;  
 }
+
 .carousel-inner{
-    height: 950px;
+    height: 940px;
 }
 
 .carousel-inner img{
     height: 950px;
 }
+
+#xyz{
+    color: white;
+}
+
+#xyz:hover{
+    text-decoration-color: aqua;
+    color: yellowgreen;
+    font-size: 25px;
+}
+ 
+#menu1{
+    visibility: hidden;
+} 
+
+#menu1:hover{
+    visibility: visible;
+}
+
 /* 
 .fas fa-utensils{
     height:50px;
