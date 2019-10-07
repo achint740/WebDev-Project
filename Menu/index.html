@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Main Page</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- NAVIGATION BAR STARTS -->
+     <!-- NAVIGATION BAR STARTS -->
     <!-- ////////////////////////////////////////////////////////////////////////////////  -->
-        <nav class="navbar navbar-expand-sm -50 bg-dark fixed-top">
+    <nav class="navbar navbar-expand-sm -50 bg-dark fixed-top">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- // ul for logo and dtu canteen heading //   -->
                 <ul class="navbar-nav mr-auto">
-                    <img src="fs.jpg" width="40px" height="50px">
+                    <img src="../fs.jpg" width="40px" height="50px">
                     <li id="dtu"><h3>The Food BuFF</h3></li>
                 </ul>
                 <!-- // ul for various buttons //  -->
                 <ul class="navbar-nav  float-xs-right">
                     <!-- //////////// HOME //////////// -->
                     <li class="nav-item active">
-                        <a class="nav-link " id="xyz" href="index.html">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link " id="xyz" href="../index.html">Home<span class="sr-only">(current)</span></a>
                     </li> 
                     <!-- //////////// ABOUT //////////// -->
                     <li class="nav-item">
@@ -43,10 +41,10 @@
                     <!-- //////////// MENU //////////// -->
                     <div class="dropdown">
                       <li class="nav-item dropbtn" >
-                          <a class="nav-link " id="xyz" href="Menu/index.html">Menu<br></a>
+                          <a class="nav-link " id="xyz" href="index.html">Menu<br></a>
                           <div class="dropdown-content">
-                              <a href="Menu/starters/index.html">Starters</a><hr color="white">
-                              <a href="#">Main Course</a><hr color="white">
+                              <a href="../Menu/starters/index.html">Starters</a><hr color="white">
+                              <a href="../Menu/mainCourse/index.html">Main Course</a><hr color="white">
                               <a href="#">Dessert</a><hr color="white">
                               <a href="#">Drinks</a><hr color="white">
                           </div>
@@ -66,45 +64,56 @@
     <!-- ////////////////////////////////////////////////////////////////////////////////  -->
 
     <!-- NAVIGATION BAR ENDS  -->
-
-    <!-- IMAGE/QUOTE AREA STARTS  -->
-
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="c1.png" class="d-block w-100">
-                <div class="carousel-caption d-none d-md-block">
-                    <button type="button" class="btn btn-primary">View MENU</button>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="c2.png" class="d-block w-100">
-              </div>
-              <div class="carousel-item">
-                <img src="c3.png" class="d-block w-100">
-              </div>
+    <br>
+    <br>
+    <br>
+    
+    <h1 class="text-center">Menu</h1>
+    <div class="container m-2">
+        <div class="row">
+            <div class="col">
+                
+                <img src="starters.jpg" class="image"> 
+                
+                <div class="middle">
+                    <div><a href="../Menu/starters/index.html" class="text">Starters</a></div>
+                </div> 
+                  
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+            <div class="col">
+                <img src="mainCourse.jpg" class="image">
+                <div class="middle">
+                    <div ><a href=" " class="text">Main Course</a></div>
+                </div> 
+                
+            </div>
+            <div class="col">
+                <img src="dessert.jpg" class="image">
+                <div class="middle">
+                    <div ><a href="" class="text">Dessert</a></div>
+                </div> 
+            </div>
+            <div class="col">
+                <img src="drinks.jpg" class="image">
+                <div class="middle">
+                    <div><a href="" class="text">Drinks</a></div>
+                </div> 
+            </div>
+        </div>
     </div>
 
-    <!-- IMAGE/QUOTE AREA ENDS  -->
+
+    <!-- <div class="foodTypes">
+        <div class="starters col-md-3 ">
+            <img src="starters.jpg" class="image">
+        </div>
+
+        <div class="mainCourse col-md-3">
+            <img src="mainCourse.jpg" class="image">
+        </div>
+    </div> -->
+
+
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
