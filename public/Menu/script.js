@@ -8,10 +8,23 @@ $('.add').on('click',function(){
         price : +(($(this).parent()).siblings(".price").children().text()),
         times : +(($(this).parent()).siblings(".cnt").children('.update').text())
     };
-    console.log(obj.times);
+    // console.log(obj.times);
     $.post('/addcart',obj,(data)=>{
-        if(data == 'Success')
+        if(data == 'Success'){
             console.log('Yass!!');
+        }
+        else{
+            // console.log('Msg was Failure');
+            let obj_new = {
+                name : obj.name,
+                price : obj.price,
+                work : 'inc'
+            }
+            $.post('/updatecart',obj_new,(data)=>{
+                if(data == 'Success')
+                    console.log('Update Successfull');
+            })
+        }
     });
     $(this).parent().siblings('.cnt').show();
 });

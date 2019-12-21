@@ -70,15 +70,27 @@ let cart = [];
 
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
-    cart.push(
-        {
-            name : req.body.name,
-            price : +(req.body.price),
-            times : +(req.body.times)
+    let flag = 1;
+    for(i=0;i<cart.length;i++){
+        if(cart[i].name == req.body.name){
+            flag=0;
+            break;
         }
-    );
+    }
+    let msg = 'Failure';
+    if(flag == 1){
+        cart.push(
+            {
+                name : req.body.name,
+                price : +(req.body.price),
+                times : +(req.body.times)
+            }
+        );
+       msg = 'Success';
+    }
+    
     // total = total + req.query.price;
-    res.send('Success');
+    res.send(msg);
 });
 
 
