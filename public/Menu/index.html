@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+          <!-- // ---------------------------------------------  NAV BAR STARTS------------------------------------------------- // -->
+          <nav class="navbar navbar-expand-sm -50 bg-dark fixed-top">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+          <!-- // --------------------------------------------- Restaurant Logo & Name ------------------------------------------------- // -->
+                <ul class="navbar-nav mr-auto">
+                    <img src="../Images/fs.jpg" width="40px" height="50px">
+                    <li id="dtu"><h3>The Food BuFF</h3></li>
+                </ul>
+
+
+          <!-- // --------------------------------------------- BUTTONS ------------------------------------------------- // -->
+                <ul class="navbar-nav  float-xs-right">
+
+          <!-- // --------------------------------------------- HOME ------------------------------------------------- // -->
+                    <li class="nav-item active">
+                        <a class="nav-link xyz" id="home" href="../index.html">Home</a>
+                    </li> 
+
+
+          <!-- // --------------------------------------------- ABOUT US ------------------------------------------------- // -->
+                    <li class="nav-item active">
+                        <a class="nav-link xyz" id="abt" href="#">About Us</a>
+                    </li>
+
+
+          <!-- // --------------------------------------------- DropDown MENU------------------------------------------------- // -->
+                    <div class="dropdown">
+                      <li class="nav-item dropbtn" >
+                          <a class="nav-link xyz" id="menu" href="index.html">Menu</a> <br />
+                          <div class="dropdown-content">
+                              <a class="nav-link active xyz1" href="starters/index.html">Starters</a><hr color="white">
+                              <a class="nav-link active xyz1" href="mainCourse/index.html">Main Course</a><hr color="white">
+                              <a class="nav-link active xyz1" href="#">Dessert</a><hr color="white">
+                              <a class="nav-link active xyz1" href="#">Drinks</a><hr color="white">
+                          </div>
+                      </li>
+                    </div>
+
+
+          <!-- // --------------------------------------------- CART ------------------------------------------------- // -->
+                    <li class="nav-item active">
+                        <a class="nav-link xyz" id="CHeck" href="../CartView/index.html">Cart View</a>
+                    </li>
+          <!-- // --------------------------------------------- LOGIN ------------------------------------------------- // -->
+                    <li class="nav-item active">
+                        <a class="nav-link xyz" href="../Login/index.html">Login</a>
+                    </li> 
+                </ul>
+            </div>
+        </nav>
+
+          <!-- // --------------------------------------------- NAV BAR ENDS ------------------------------------------------- // -->
+
+    <br>
+    <br>
+    <br>
+
+        <!-- // --------------------------------------------- MENU STARTS ------------------------------------------------- // -->
+    
+    <h1 class="text-center">Menu</h1>
+    <div class="container m-2 text-center">
+        <div class="row ">
+            <div class="col">
+                
+                <img src="Images/starters.jpg" class="image"> 
+                
+                <div class="middle">
+                    <div><a href="starters/index.html" class="text">Starters</a></div>
+                </div> 
+                  
+            </div>
+            <div class="col">
+                <img src="Images/mainCourse.jpg" class="image">
+                <div class="middle">
+                    <div ><a href="mainCourse/index.html" class="text">Main Course</a></div>
+                </div> 
+                
+            </div>
+            <div class="col">
+                <img src="Images/dessert.jpg" class="image">
+                <div class="middle">
+                    <div ><a href="" class="text">Dessert</a></div>
+                </div> 
+            </div>
+            <div class="col">
+                <img src="Images/drinks.jpg" class="image">
+                <div class="middle">
+                    <div><a href="" class="text">Drinks</a></div>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="foodTypes">
+        <div class="starters col-md-3 ">
+            <img src="starters.jpg" class="image">
+        </div>
+
+        <div class="mainCourse col-md-3">
+            <img src="mainCourse.jpg" class="image">
+        </div>
+    </div> -->
+    
+</body>
+</html>
