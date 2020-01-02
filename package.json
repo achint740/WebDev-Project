@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "mongodb": "^3.4.0",
-    "mysql3": "^0.4.7",
+    "mysql3": "^0.4.9",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-local": "^1.0.0",

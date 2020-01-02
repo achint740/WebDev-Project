@@ -44,7 +44,7 @@ $('.dec').on('click',function(){
             console.log('Update Successfull');
     });
     if(v == '0')
-        $('.cnt').hide();
+        $(this).parent('.cnt').hide();
 });
 
 $('.inc').on('click',function(){
