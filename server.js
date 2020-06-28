@@ -10,7 +10,7 @@ const session = require('express-session');
 
 //----------------------------------------------------------
 app.use(exp.json())
-app.use(exp.urlencoded({extended:true})) 
+app.use(exp.urlencoded({extended:true}))
 
 
 
@@ -123,7 +123,6 @@ app.get('/getcart',(req,res)=>{
 
 
 
-
 //-----------------------------POST REQUEST FOR ADDING A USER-----------------------------
 app.post('/signup',(req,res)=>{
     Users.create({
@@ -143,9 +142,12 @@ app.post('/signup',(req,res)=>{
 app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),function(req,res){
     console.log(req.user.username);
     res.redirect('/menu');
+    // res.send(req.user.username);
 });
 
-
+app.get('/profile',(req,res)=>{
+    res.send(req.user);
+})
 
 
 //-----------------------------FOR ALL OTHER REQUESTS-----------------------------

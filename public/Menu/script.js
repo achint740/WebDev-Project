@@ -1,5 +1,18 @@
 // alert('Connected!!');
 
+$(()=>{
+    $.get('/profile',(data)=>{
+        if(data.username!=undefined){
+            $('#login123')
+                .text(data.username)
+                .attr("href","#")
+        }
+        else{
+            alert("Please Login");
+        }
+    });
+});
+
 $('.cnt').hide();
 
 $('.add').on('click',function(){
@@ -60,5 +73,14 @@ $('.inc').on('click',function(){
     $.post('/updatecart',obj,(data)=>{
         if(data == 'Success')
             console.log('Update Successfull');
+    });
+});
+
+$('#acg').on('click',function(){
+    alert("Clicked");
+    $.get('/profile',(data)=>{
+        let str = data.username + " Has Logged In ";
+        alert(str);
+        $('#login123').text('User : ' + data.username);
     });
 });
