@@ -1,7 +1,15 @@
 $(document).ready(()=>{
+    $.get('/profile',(data)=>{
+        if(data.username!=undefined){
+            console.log("Welcome " + data.username);
+        }
+        else{
+            alert("Please Login");
+        }
+    });
     $("#cart")
          .hide()
-        .click(); 
+         .click();
 });
 
 function refresh(){

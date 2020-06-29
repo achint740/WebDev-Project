@@ -59,8 +59,11 @@ $('.dec').on('click',function(){
         if(data == 'Success')
             console.log('Update Successfull');
     });
-    if(v == '0')
+    if(v == '0'){
+        $(this).parent().children('.update').text("1");
         $(this).parent('.cnt').hide();
+    }
+
 });
 
 $('.inc').on('click',function(){
