@@ -66,12 +66,7 @@ let cart = [];
 // let total = 0;
 
 app.get('/checkUser',(req,res)=>{
-    if(req.user){
-        return res.send(req.user);
-    }
-    else{
-        return res.send(null)
-    }
+    res.send(req.user);
 });
 
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
