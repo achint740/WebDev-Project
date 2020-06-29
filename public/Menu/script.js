@@ -1,4 +1,14 @@
 // alert('Connected!!');
+function loginCheck(){
+    $.get('/checkUser',(data)=>{
+        if(!data){
+            return true
+        }
+        else{
+            return false
+        }
+    })
+}
 
 $(()=>{
     $("#logout").hide();
@@ -32,11 +42,10 @@ function loginCheck()
     })
 }
 $('.add').on('click',function(){
-    
     let ans=loginCheck()
-    if(!ans)
-    {
-       return document.location.href='/login'
+    if(!ans){
+       alert("Please Login");
+       return document.location.href='/login';
     }
     let obj = {
         name : ($(this).parent()).siblings(".name").children().text(),

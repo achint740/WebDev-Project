@@ -1,10 +1,26 @@
+function loginCheck(){
+    $.get('/checkUser',(data)=>{
+        if(!data){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+}
+
 $(document).ready(()=>{
+    let ans=loginCheck()
+    if(!ans){
+       alert("Please Login");
+       return document.location.href='/login'
+    }
     $.get('/profile',(data)=>{
         if(data.username!=undefined){
             console.log("Welcome " + data.username);
         }
         else{
-            alert("Please Login");
+        
         }
     });
     $("#cart")
