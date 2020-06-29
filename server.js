@@ -65,15 +65,6 @@ app.use('/login',exp.static(__dirname + '/public/Login'));
 let cart = [];
 // let total = 0;
 
-app.get('/checkUser',(req,res)=>{
-    if(req.user){
-        return res.send(req.user);
-    }
-    else{
-        return res.send(null)
-    }
-});
-
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
     let flag = 1;
@@ -146,7 +137,7 @@ app.post('/signup',(req,res)=>{
 
 //-----------------------------POST REQUEST FOR LOGIN OF A USER-----------------------------
 app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),function(req,res){
-    console.log(req.user.username);
+    // console.log(req.user.username);
     res.redirect('/menu');
     // res.send(req.user.username);
 });
@@ -171,13 +162,14 @@ app.get('*',(req,res)=>{
 
 //--------------------------------Check User-------------------------------------
 app.get('/checkUser',(req,res)=>{
+    console.log("Request received")
     if(req.user)
     {
-        return res.send(req.user);
+        res.send(req.user);
     }
     else
     {
-        return res.send(null)
+        res.send(null)
     }
 })
 

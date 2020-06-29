@@ -1,15 +1,17 @@
 // alert('Connected!!');
-function loginCheck(){
+function loginCheck()
+{
     $.get('/checkUser',(data)=>{
-        if(!data){
+        if(data)
+        {
             return true
         }
-        else{
+        else
+        {
             return false
         }
     })
 }
-
 $(()=>{
     $("#logout").hide();
     $.get('/profile',(data)=>{
@@ -28,19 +30,7 @@ $(()=>{
 
 $('.cnt').hide();
 
-function loginCheck()
-{
-    $.get('/checkUser',(data)=>{
-        if(!data)
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    })
-}
+
 $('.add').on('click',function(){
     let ans=loginCheck()
     if(!ans){

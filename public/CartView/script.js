@@ -1,6 +1,6 @@
 function loginCheck(){
     $.get('/checkUser',(data)=>{
-        if(!data){
+        if(data){
             return true;
         }
         else{
