@@ -9,7 +9,7 @@ $(()=>{
             $("#logout").show();
         }
         else{
-            alert("Logged Out Successfully");
+            console.log("Logged Out Successfully");
         }
     });
 });

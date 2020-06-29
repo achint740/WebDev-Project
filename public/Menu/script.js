@@ -4,14 +4,14 @@ $(()=>{
     $("#logout").hide();
     $.get('/profile',(data)=>{
         if(data.username!=undefined){
-            alert("Welcome " + data.username);
+            console("Welcome " + data.username);
             $('#login123')
                 .text(data.username)
                 .attr("href","#")
             $("#logout").show();
         }
         else{
-            alert("Please Login");
+            console("Please Login");
         }
     });
 });
