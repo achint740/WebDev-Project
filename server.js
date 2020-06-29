@@ -65,17 +65,6 @@ app.use('/login',exp.static(__dirname + '/public/Login'));
 let cart = [];
 // let total = 0;
 
-
-// app.use(function(req,res,next){
-//     if(!req.user){
-//         console.log("here");
-//         // console.log(res);
-//         return res.redirect('/login');
-//     }
-//     else 
-//         next();
-// })
-
 app.get('/checkUser',(req,res)=>{
     if(req.user){
         return res.send(req.user);

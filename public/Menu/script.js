@@ -31,7 +31,8 @@ $('.cnt').hide();
 $('.add').on('click',function(){
     let ans=loginCheck()
     if(!ans){
-       return document.location.href='/login'
+       alert("Please Login");
+       return document.location.href='/login';
     }
     let obj = {
         name : ($(this).parent()).siblings(".name").children().text(),

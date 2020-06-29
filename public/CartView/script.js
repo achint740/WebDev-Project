@@ -1,10 +1,10 @@
 function loginCheck(){
     $.get('/checkUser',(data)=>{
         if(!data){
-            return true
+            return true;
         }
         else{
-            return false
+            return false;
         }
     })
 }
