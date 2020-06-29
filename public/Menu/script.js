@@ -1,11 +1,14 @@
 // alert('Connected!!');
 
 $(()=>{
+    $("#logout").hide();
     $.get('/profile',(data)=>{
         if(data.username!=undefined){
+            alert("Welcome " + data.username);
             $('#login123')
                 .text(data.username)
                 .attr("href","#")
+            $("#logout").show();
         }
         else{
             alert("Please Login");
@@ -76,11 +79,9 @@ $('.inc').on('click',function(){
     });
 });
 
-$('#acg').on('click',function(){
-    alert("Clicked");
-    $.get('/profile',(data)=>{
-        let str = data.username + " Has Logged In ";
-        alert(str);
-        $('#login123').text('User : ' + data.username);
+$("#logout").on('click',function(){
+    $.get("/logout",(data)=>{
+        console.log(data);
     });
 });
+

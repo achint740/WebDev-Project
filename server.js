@@ -147,7 +147,15 @@ app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),
 
 app.get('/profile',(req,res)=>{
     res.send(req.user);
-})
+});
+
+//-----------------------------POST REQUEST FOR LOGOUT OF A USER-----------------------------
+
+app.get("/logout",function(req,res){
+    // console.log("Logging out : " + req.user.username);
+    req.logout();
+    res.redirect("/");
+});
 
 
 //-----------------------------FOR ALL OTHER REQUESTS-----------------------------
