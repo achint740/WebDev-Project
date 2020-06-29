@@ -2,13 +2,13 @@
 function loginCheck()
 {
     $.get('/checkUser',(data)=>{
-        if(data)
-        {
-            return true
+        if(data.username!=undefined){
+            return true;
         }
-        else
-        {
-            return false
+        else{
+            alert("Please Login");
+            document.location.href='/login';
+            return false;
         }
     })
 }
@@ -32,11 +32,7 @@ $('.cnt').hide();
 
 
 $('.add').on('click',function(){
-    let ans=loginCheck()
-    if(!ans){
-       alert("Please Login");
-       return document.location.href='/login';
-    }
+    loginCheck();
     let obj = {
         name : ($(this).parent()).siblings(".name").children().text(),
         price : +(($(this).parent()).siblings(".price").children().text()),

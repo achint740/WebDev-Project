@@ -65,6 +65,12 @@ app.use('/login',exp.static(__dirname + '/public/Login'));
 let cart = [];
 // let total = 0;
 
+//--------------------------------Check User-------------------------------------
+
+app.get('/checkUser',(req,res)=>{
+    res.send(req.user);
+});
+
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
     let flag = 1;
@@ -160,18 +166,7 @@ app.get('*',(req,res)=>{
     res.send('Not Found!!');
 });
 
-//--------------------------------Check User-------------------------------------
-app.get('/checkUser',(req,res)=>{
-    console.log("Request received")
-    if(req.user)
-    {
-        res.send(req.user);
-    }
-    else
-    {
-        res.send(null)
-    }
-})
+
 
 
 //-----------------------------LOCALHOST 5500-----------------------------
