@@ -18,7 +18,26 @@ $(()=>{
 
 $('.cnt').hide();
 
+function loginCheck()
+{
+    $.get('/checkUser',(data)=>{
+        if(!data)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    })
+}
 $('.add').on('click',function(){
+    
+    let ans=loginCheck()
+    if(!ans)
+    {
+       return document.location.href='/login'
+    }
     let obj = {
         name : ($(this).parent()).siblings(".name").children().text(),
         price : +(($(this).parent()).siblings(".price").children().text()),
@@ -87,4 +106,5 @@ $("#logout").on('click',function(){
         console.log(data);
     });
 });
+
 
