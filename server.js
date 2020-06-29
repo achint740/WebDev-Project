@@ -164,11 +164,22 @@ app.get('*',(req,res)=>{
     res.send('Not Found!!');
 });
 
-
+//--------------------------------Check User-------------------------------------
+app.get('/checkUser',(req,res)=>{
+    if(req.user)
+    {
+        return res.send(req.user);
+    }
+    else
+    {
+        return res.send(null)
+    }
+})
 
 
 //-----------------------------LOCALHOST 5500-----------------------------
 app.listen(5500,()=>{
     console.log('Server Started!!');
 });
+
 

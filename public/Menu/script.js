@@ -30,6 +30,19 @@ $(()=>{
 
 $('.cnt').hide();
 
+function loginCheck()
+{
+    $.get('/checkUser',(data)=>{
+        if(!data)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    })
+}
 $('.add').on('click',function(){
     loginCheck();
     let obj = {
@@ -100,4 +113,5 @@ $("#logout").on('click',function(){
         console.log(data);
     });
 });
+
 
