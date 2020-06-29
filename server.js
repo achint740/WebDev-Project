@@ -66,13 +66,27 @@ let cart = [];
 // let total = 0;
 
 
+// app.use(function(req,res,next){
+//     if(!req.user){
+//         console.log("here");
+//         // console.log(res);
+//         return res.redirect('/login');
+//     }
+//     else 
+//         next();
+// })
 
+app.get('/checkUser',(req,res)=>{
+    if(req.user){
+        return res.send(req.user);
+    }
+    else{
+        return res.send(null)
+    }
+});
 
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
-    if(!req.user)
-        res.redirect('/login');
-
     let flag = 1;
     for(i=0;i<cart.length;i++){
         if(cart[i].name == req.body.name){
@@ -101,8 +115,6 @@ app.post('/addcart',function(req,res){
 
 //-----------------------------POST REQUEST FOR UPDATING CART-----------------------------
 app.post('/updatecart',function(req,res){
-    if(!req.user)
-        res.redirect('/login');
     for(i=0;i<cart.length;i++){
         if(cart[i].name == req.body.name){
             //Work According to Instruction Passed
@@ -123,8 +135,6 @@ app.post('/updatecart',function(req,res){
 
 //-----------------------------GET REQUEST FOR FETCHING CART-----------------------------
 app.get('/getcart',(req,res)=>{
-    if(!req.user)
-        res.redirect('/login');
     res.send(cart);
 });
 
