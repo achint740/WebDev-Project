@@ -11,7 +11,6 @@ async function loginCheck(){
         }
     })
 }
-
 $(()=>{
     $("#logout").hide();
     $.get('/profile',(data)=>{
