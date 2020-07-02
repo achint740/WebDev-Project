@@ -1,6 +1,6 @@
 // alert('Connected!!');
-function loginCheck(){
-    $.get('/checkUser',(data)=>{
+async function loginCheck(){
+    $.get('/profile',(data)=>{
         if(data.username!=undefined){
             return true;
         }
@@ -30,19 +30,6 @@ $(()=>{
 
 $('.cnt').hide();
 
-function loginCheck()
-{
-    $.get('/checkUser',(data)=>{
-        if(!data)
-        {
-            return true
-        }
-        else
-        {
-            return false
-        }
-    })
-}
 $('.add').on('click',function(){
     loginCheck();
     let obj = {
@@ -56,7 +43,7 @@ $('.add').on('click',function(){
             console.log('Yass!!');
         }
         else{
-            // console.log('Msg was Failure');
+            console.log('Msg was Failure');
             let obj_new = {
                 name : obj.name,
                 price : obj.price,

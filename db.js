@@ -17,6 +17,9 @@ const Users = db.define('users',{
     },
     contact : Sequelize.INTEGER,
     email : Sequelize.STRING,
+    cart_id : {
+       type : Sequelize.INTEGER
+    }
 });
 
 db.sync().then(()=>{

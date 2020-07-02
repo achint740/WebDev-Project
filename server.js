@@ -2,10 +2,11 @@
 const exp = require("express");
 const app = exp();
 const Users = require('./db').Users;
+const Cart = require('./cart').Cart;
 const passport = require('./passport');
 const session = require('express-session');
 
-
+let cart_no = 1;
 
 
 //----------------------------------------------------------
@@ -58,59 +59,79 @@ app.use('/signup',exp.static(__dirname + '/public/SignUp'));
 //-----------------------------LOAD Login Page ON REQUEST TO '/login' -----------------------------
 app.use('/login',exp.static(__dirname + '/public/Login'));
 
-
-
-
-//-----------------------------Initially, CART = EMPTY ----------------------------
-let cart = [];
-// let total = 0;
-
-app.get('/checkUser',(req,res)=>{
-    res.send(req.user);
-});
-
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
-    let flag = 1;
-    for(i=0;i<cart.length;i++){
-        if(cart[i].name == req.body.name){
-            flag=0;
-            break;
-        }
-    }
-    let msg = 'Failure';
-    if(flag == 1){
-        cart.push(
-            {
-                name : req.body.name,
-                price : +(req.body.price),
-                times : +(req.body.times)
-            }
-        );
-       msg = 'Success';
-    }
-    
-    // total = total + req.query.price;
-    res.send(msg);
-});
 
+    let name = req.body.name;
+    let price = +(req.body.price);
+    let times = +(req.body.times);
+    let msg = "Success";
+
+    Users.findOne({
+        where : {
+            username : req.user.username
+        }
+    }).then((val)=>{
+        let v = (val.dataValues);
+        let my_cart = +(v.cart_id);
+        Cart.findOne({
+            where : {
+                cart_id : my_cart
+            }
+        }).then((val)=>{
+            let n_order = (val.dataValues).order;
+            if(n_order.hasOwnProperty(name)){
+                msg = "Failure";
+                console.log("Sorry,It was an update!");
+                res.send(msg);
+            }
+            else{
+                n_order[name] = [price,times];
+                console.log(n_order);
+                add_util(my_cart,n_order);
+                msg = "Success";
+                console.log("Addition Done");
+                res.send(msg);
+            }
+        })
+    });
+});
 
 
 
 //-----------------------------POST REQUEST FOR UPDATING CART-----------------------------
 app.post('/updatecart',function(req,res){
-    for(i=0;i<cart.length;i++){
-        if(cart[i].name == req.body.name){
-            //Work According to Instruction Passed
-            if(req.body.work == 'dec')
-                cart[i].times--;
-            else    
-                cart[i].times++;
-            if(cart[i].times == 0)
-                cart.splice(i,1);
-            break;
+    let name = req.body.name;
+    Users.findOne({
+        where : {
+            username : req.user.username
         }
-    }
+    }).then((val)=>{
+        let v = (val.dataValues);
+        let my_cart = +(v.cart_id);
+        Cart.findOne({
+            where : {
+                cart_id : my_cart
+            }
+        }).then((val)=>{
+            let n_order = (val.dataValues).order;
+            let item = n_order[name];
+            if(req.body.work=='dec'){
+                if(item[1]==1){
+                    delete n_order[name];
+                }
+                else{
+                    item[1]--;
+                    n_order[name] = item;
+                }
+            }
+            else{
+                item[1]++;
+                n_order[name] = item;
+            }
+            add_util(my_cart,n_order);
+        });
+    });
     res.send('Success');
 });
 
@@ -119,7 +140,26 @@ app.post('/updatecart',function(req,res){
 
 //-----------------------------GET REQUEST FOR FETCHING CART-----------------------------
 app.get('/getcart',(req,res)=>{
-    res.send(cart);
+    Users.findOne({
+        where : {
+            username : req.user.username
+        }
+    }).then((val)=>{
+        let v = (val.dataValues);
+        let my_cart = +(v.cart_id);
+        Cart.findOne({
+            where : {
+                cart_id : my_cart
+            }
+        }).then((val)=>{
+            let n_order = (val.dataValues).order;
+            // console.log("Your order is : \n");
+            // Object.keys(n_order).forEach((key,index)=>{
+            //     console.log(key,n_order[key]);
+            // });
+            res.send(n_order);
+        })
+    });
 });
 
 
@@ -130,9 +170,16 @@ app.post('/signup',(req,res)=>{
         username : req.body.username,
         password : req.body.password,
         contact : req.body.contact,
-        email : req.body.email
+        email : req.body.email,
+        cart_id : +(cart_no)
     }).then((createdUser)=>{
-        res.redirect('/login');
+        Cart.create({
+            cart_id : +(cart_no),
+            order : {}
+        }).then((cart)=>{
+            cart_no = cart_no + 1;
+            res.redirect('/login');
+        })
     })
 });
 
@@ -141,9 +188,25 @@ app.post('/signup',(req,res)=>{
 
 //-----------------------------POST REQUEST FOR LOGIN OF A USER-----------------------------
 app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),function(req,res){
-    console.log(req.user.username);
-    res.redirect('/menu');
-    // res.send(req.user.username);
+    console.log("User : " + req.user.username + " Has Looged In");
+    Users.findOne({
+        where : {
+            username : req.user.username
+        }
+    }).then((val)=>{
+        let v = (val.dataValues);
+        let my_cart = +(v.cart_id);
+        Cart.findOne({
+            where : {
+                cart_id : my_cart
+            }
+        }).then((val)=>{
+            let n_order = (val.dataValues).order;
+            n_order = {};
+            add_util(my_cart,n_order);
+            res.redirect('/menu');
+        })
+    });
 });
 
 app.get('/profile',(req,res)=>{
@@ -164,22 +227,18 @@ app.get('*',(req,res)=>{
     res.send('Not Found!!');
 });
 
-//--------------------------------Check User-------------------------------------
-app.get('/checkUser',(req,res)=>{
-    if(req.user)
-    {
-        return res.send(req.user);
-    }
-    else
-    {
-        return res.send(null)
-    }
-})
-
 
 //-----------------------------LOCALHOST 5500-----------------------------
 app.listen(5500,()=>{
     console.log('Server Started!!');
 });
 
-
+function add_util(my_cart,n_order){
+    Cart.update(
+        {order : n_order},
+        {where : { cart_id : my_cart} }
+    )
+    .then(function(rowUpdated){
+        console.log("Update Done");
+    });
+}

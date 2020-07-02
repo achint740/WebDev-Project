@@ -1,15 +1,3 @@
-function loginCheck(){
-    $.get('/checkUser',(data)=>{
-        if(data.username!=undefined){
-            return true;
-        }
-        else{
-            alert("False");
-            return false;
-        }
-    })
-}
-
 $(document).ready(()=>{
     $.get('/profile',(data)=>{
         if(data.username!=undefined){
@@ -30,21 +18,17 @@ function refresh(){
     $('#mycart tr').remove();
     $.get('/getcart',(data)=>{
         let i = 1;
-        for(let y of data){
+        Object.keys(data).forEach((key,index)=>{
             $('#mycart').append(
                 $('<tr>').append(
                     `<td>${i}. </td>`,
-                    `<td>${y.name}(X  ${y.times})</td>`,
-                    // 'X  ',
-                    // y.times,
-                    // ')  =  Rs.',
-                    `<td>${(y.price*y.times)}</td>`
+                    `<td>${key}(X  ${data[key][1]})</td>`,
+                    `<td>${(data[key][0]*data[key][1])}</td>`
                 )
             )
             i++;
-            total+=(y.price*y.times);
-            // console.log(typeof(y.times));
-        }
+            total+=(data[key][0]*data[key][1]);
+        })
         if(total>0)
             $('.bg-text').append(`<h4>Your Total Is :  <b>${total}</b></h4>`);
         else    
