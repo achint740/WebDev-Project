@@ -1,16 +1,26 @@
-// alert('Connected!!');
-async function loginCheck(){
-    $.get('/profile',(data)=>{
-        if(data.username!=undefined){
-            return true;
-        }
-        else{
-            alert("Please Login");
-            document.location.href='/login';
-            return false;
-        }
-    })
+function loginCheck(){
+    return new Promise(function(resolve,reject){
+        console.log("Checking");
+        let flag = true;
+        $.get('/profile',(data)=>{
+            if(data.username!=undefined){
+                flag = true;
+            }
+            else{
+                flag = false;
+            }
+        });
+        setTimeout(function(){
+            if(flag){
+                resolve();
+            }
+            else{
+                reject();
+            }
+        },300)
+    });
 }
+
 $(()=>{
     $("#logout").hide();
     $.get('/profile',(data)=>{
@@ -30,29 +40,35 @@ $(()=>{
 $('.cnt').hide();
 
 $('.add').on('click',function(){
-    loginCheck();
     let obj = {
         name : ($(this).parent()).siblings(".name").children().text(),
         price : +(($(this).parent()).siblings(".price").children().text()),
         times : +(($(this).parent()).siblings(".cnt").children('.update').text())
     };
-    // console.log(obj.times);
-    $.post('/addcart',obj,(data)=>{
-        if(data == 'Success'){
-            console.log('Yass!!');
-        }
-        else{
-            console.log('Msg was Failure');
-            let obj_new = {
-                name : obj.name,
-                price : obj.price,
-                work : 'inc'
+    let res = false;
+    loginCheck().then(function(){
+        // console.log("Name = " + obj.name);
+        res = true;
+        $.post('/addcart',obj,(data)=>{
+            if(data == 'Success'){
+                console.log('Yass!!');
             }
-            $.post('/updatecart',obj_new,(data)=>{
-                if(data == 'Success')
-                    console.log('Update Successfull');
-            })
-        }
+            else{
+                console.log('Msg was Failure');
+                let obj_new = {
+                    name : obj.name,
+                    price : obj.price,
+                    work : 'inc'
+                }
+                $.post('/updatecart',obj_new,(data)=>{
+                    if(data == 'Success')
+                        console.log('Update Successfull');
+                })
+            }
+        });
+    })
+    .catch(function(){
+        document.location.href='/login';
     });
     $(this).parent().siblings('.cnt').show();
 });
