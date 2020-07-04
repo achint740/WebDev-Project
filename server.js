@@ -59,6 +59,8 @@ app.use('/signup',exp.static(__dirname + '/public/SignUp'));
 //-----------------------------LOAD Login Page ON REQUEST TO '/login' -----------------------------
 app.use('/login',exp.static(__dirname + '/public/Login'));
 
+
+
 //-----------------------------POST REQUEST FOR ADDING TO CART-----------------------------
 app.post('/addcart',function(req,res){
 
@@ -87,7 +89,7 @@ app.post('/addcart',function(req,res){
             }
             else{
                 n_order[name] = [price,times];
-                console.log(n_order);
+                console.log("Order As Of Now : " + n_order);
                 add_util(my_cart,n_order);
                 msg = "Success";
                 console.log("Addition Done");
@@ -153,10 +155,6 @@ app.get('/getcart',(req,res)=>{
             }
         }).then((val)=>{
             let n_order = (val.dataValues).order;
-            // console.log("Your order is : \n");
-            // Object.keys(n_order).forEach((key,index)=>{
-            //     console.log(key,n_order[key]);
-            // });
             res.send(n_order);
         })
     });
@@ -209,6 +207,8 @@ app.post('/login',passport.authenticate('local', { failureRedirect: '/login' }),
     });
 });
 
+//-----------------------------GET REQUEST FOR PROFILE OF A USER-----------------------------
+
 app.get('/profile',(req,res)=>{
     res.send(req.user);
 });
@@ -232,6 +232,8 @@ app.get('*',(req,res)=>{
 app.listen(5500,()=>{
     console.log('Server Started!!');
 });
+
+//-----------------------------Add_Util Function-----------------------------
 
 function add_util(my_cart,n_order){
     Cart.update(
