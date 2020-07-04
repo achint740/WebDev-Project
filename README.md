@@ -3,7 +3,7 @@ This Repository consists code of my first Web Development Project built jointly 
 The project is on a food ordering website.
 
 #      HOME PAGE
-<img src="Git_Img/Main_page.jpeg">
+<img src="Git_Img/Main_Page.jpeg">
 
 Features included : 
 #      1. User SignUp 
