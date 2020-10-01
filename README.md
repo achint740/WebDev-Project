@@ -1,6 +1,6 @@
 #                                                                      Online Food Delivery Project
 This Repository consists code of my first Web Development Project built jointly with Vaibhav Varshney(https://github.com/VAIBHAV189)
-The project is on a food ordering website.
+The project is on a food ordering website named Food BuFF.
 
 #      HOME PAGE
 <img src="Git_Img/Main_Page.jpeg">
