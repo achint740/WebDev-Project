@@ -3,7 +3,7 @@ $(document).ready(()=>{
         if(data.username!=undefined){
             console.log("Welcome " + data.username);
         }
-        else{
+        else if(data.username==undefined){
             alert("Please Login");
             document.location.href='/login';
         }
@@ -26,9 +26,9 @@ function refresh(){
                     `<td>${(data[key][0]*data[key][1])}</td>`
                 )
             )
-            i++;
+            i += 1;
             total+=(data[key][0]*data[key][1]);
-        })
+        });
         if(total>0)
             $('.bg-text').append(`<h4>Your Total Is :  <b>${total}</b></h4>`);
         else    
